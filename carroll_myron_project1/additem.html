@@ -28,6 +28,24 @@
 							<option value="Mrs">Mrs</option>
 							<option value="Mr">Mr</option>
 						</select>
+					<li><label for="fname">First Name</label><input type="text" id="fname" /></li>
+					<li><label for="lname">Last Name</label><input type="text" id="lname" /></li>
+					<li><label for="email">Email</label><input type="email" id="email" /></li>
+					<div>We are a community and want to celebrate you on your birthday</div>
+					<li><label for="birth">Birthday</label><input type="date" placeholder="yyyy-mm-dd" name="bday" /></li>
+					<li><label for="group"><legend>Which of the following best describes you:</legend></label>
+						<ul class="checkbox">
+							<input type="radio" checked value="member" id="member" name="relation"/>
+								<label for="member">Member of the Church you play for.</label><br>
+							<input type="radio" checked value="not" id="not" name="relation"/>
+								<label for="not">Not a member of the Church you play for.</label><br>
+							<input type="radio" checked value="donot" id="donot" name="relation"/>
+								<label for="donot">Do Not Play in Church.</label><br>
+					<div>Another function of this community is prayer. Do you have a prayer request?</div>
+					<li><label for="prayer">Prayer request</label><textarea rows="4" cols="50"></textarea></li>
+					<div>On a scale of 1-10, how would you rate your current church situation at addressing your needs as a person who plays music?</div>
+					<li><label for="reach">Reaches You</label><input type="range" min="1" max="10" name="out" type="range" /></li>
+					
 					
 				</ul>
 				
