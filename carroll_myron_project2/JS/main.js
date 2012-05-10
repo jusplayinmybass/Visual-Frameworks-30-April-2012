@@ -2,11 +2,10 @@
 // Title: Assignment 2 JavaScript
 // Class: Visual Frameworks
 
-alert("Works");
 // Wait until the DOM is ready.
 window.addEventListener("DOMContentLoaded", function(){
 var titleGroups = ["Choose One", "Ms", "Mrs", "Mr"],
-	groupvalue;
+	groupValue;
 	//GetElementByID Function
 	function $(x){
 		var theElement = document.getElementById(x);
@@ -55,7 +54,6 @@ var titleGroups = ["Choose One", "Ms", "Mrs", "Mr"],
             localStorage.setItem(id, JSON.stringify(item));
             alert("Contact Saved");
     }
-	//Variable Defaults
 	
 	makeTitle();
 	
