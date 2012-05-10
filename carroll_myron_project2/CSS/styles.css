@@ -6,8 +6,9 @@
 */
 
 p{	
-	 	font-family:  Arial;
-		color: #888888;
+	font-family:  Arial;
+	color: #888888;
+	background: #000
 }
 
 a{
@@ -36,13 +37,9 @@ div{
 	font-family: Times;
 	color: #888;
 	background: #000;
+	display: inline;
 }
 
-a {
-	margin: 5px;
-	padding: 5px;
-	font-size: x-small;
-}
 
 li {
 	color: #333;
