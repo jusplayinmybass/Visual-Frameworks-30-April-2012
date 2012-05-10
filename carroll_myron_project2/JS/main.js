@@ -32,13 +32,13 @@ var titleGroups = ["Choose One", "Ms", "Mrs", "Mr"];
 	makeTitle();
 	
 	//Set Links and Submit Click Events
-	var displayLink = $('display');
+/*	var displayLink = $('display');
 	displayLink.addEventListener("click", getData);
 	var clearLink = $('clear');
 	clearLink.addEventListener('click', clearLocal);
 	var save = $('submit');
 	save.addEventListener('click', storeData);
 
-
+*/
 
 });
