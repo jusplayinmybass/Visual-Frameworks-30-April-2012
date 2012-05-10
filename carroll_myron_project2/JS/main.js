@@ -26,7 +26,24 @@ var titleGroups = ["Choose One", "Ms", "Mrs", "Mr"];
 		}
 		selectLi.appendChild(makeSelect);
 	}
-
+	//Store the data to local storage
+	function storeData(){
+        var id = Math.floor(Math.random()*10000000001);
+        //Gather up all form field values in an object
+        //Object properties contain an array that contains the form label and input value.
+        var item          ={};
+            item.title    =["Title", $('title').value];
+            item.fname    =["First Name", $('fname').value];
+            item.lname    =["Last Name", $('lname').value];
+            item.email    =["Email", $('email').value];
+            item.birth    =["Birthday", $('birth').value];
+//            item.group    =["Group", ];
+            item.prayer    =["Prayer Request", $('prayer').value];
+            item.needs    =["Needs", $('needs').value];
+            //Save the data in local storage: use stringify to convert to a string
+            localStorage.setItem(id, JSON.stringify(item));
+            alert("Contact Saved")
+    }
 	//Variable Defaults
 	
 	makeTitle();
@@ -37,8 +54,8 @@ var titleGroups = ["Choose One", "Ms", "Mrs", "Mr"];
 	var clearLink = $('clear');
 	clearLink.addEventListener('click', clearLocal);
 	var save = $('submit');
-	save.addEventListener('click', storeData);
+*/	save.addEventListener('click', storeData);
 
-*/
+
 
 });
