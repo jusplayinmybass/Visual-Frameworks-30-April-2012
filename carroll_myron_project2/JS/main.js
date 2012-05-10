@@ -2,6 +2,7 @@
 // Title: Assignment 2 JavaScript
 // Class: Visual Frameworks
 
+alert("Works");
 // Wait until the DOM is ready.
 window.addEventListener("DOMContentLoaded", function(){
 var titleGroups = ["Choose One", "Ms", "Mrs", "Mr"];
