@@ -35,6 +35,27 @@ var titleGroups = ["Choose One", "Ms", "Mrs", "Mr"],
             }
         }
     }
+    
+    function toggleControls(n) {
+	switch(n) {
+		case "on":
+			$("minForm").style.display = "none";
+			$("clear").style.display = "inline";
+			$("display").style.display = "none";
+			$("addNew").style.display = "inline";
+			break;
+		case "off":
+			$("minForm").style.display = "block";
+			$("clear").style.display = "inline";
+			$("display").style.display = "inline";
+			$("addNew").style.display = "none";
+			$("items").style.display = "none";
+			break;
+		default:
+			return false;
+	}
+};
+
 	//Store the data to local storage
 	function storeData(){
         var id = Math.floor(Math.random()*10000000001);
@@ -53,6 +74,31 @@ var titleGroups = ["Choose One", "Ms", "Mrs", "Mr"],
             //Save the data in local storage: use stringify to convert to a string
             localStorage.setItem(id, JSON.stringify(item));
             alert("Contact Saved");
+    }
+    function getData(){
+	toggleControls("on")
+    	var makeDiv = document.createElement('div');
+    	makeDiv.setAttribute("id", "items");
+    	var makeList = document.createElement('ul');
+    	makeDiv.appendChild(makeList);
+	document.body.appendChild(makeDiv);
+	$("items").style.display = "block"
+    	for(var i=0, len=localStorage.length; i<len; i++){
+    		var makeLi = document.createElement('li');
+    		makeList.appendChild(makeLi);
+    		var key = localStorage.key(i);
+    		var value = localStorage.getItem(key);
+    		var obj = JSON.parse(value);
+		var makeSublist = document.createElement("ul");
+		makeli.appendChild(makeSublist);
+		for (var n in obj) {
+			var makeSubli = document.createElement("li");
+			makeSublist.appendChild(makeSubli);
+			var optSubText = obj[n][0] + " " + obj[n][1];
+			makeSubli.innerHTML = optSubText;
+    		
+    	}
+    
     }
 	
 	makeTitle();
