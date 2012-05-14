@@ -3,7 +3,7 @@
 // Class: Visual Frameworks
 
 // Wait until the DOM is ready.
-
+alert("Javascript Works")
 window.addEventListener("DOMContentLoaded", function(){
 var titleGroups = ["Choose One", "Ms", "Mrs", "Mr"],
     groupValue;
@@ -55,7 +55,7 @@ var titleGroups = ["Choose One", "Ms", "Mrs", "Mr"],
         default:
             return false;
     }
-}
+};
 
     //Store the data to local storage
     function storeData(){
@@ -101,20 +101,19 @@ var titleGroups = ["Choose One", "Ms", "Mrs", "Mr"],
         }
     
     }
-}
     
-   
-function clearLocal(){
+    
+function clearLocal() {
     if(localStorage.length === 0) {
         alert("There is no data to clear.");
-    }else{
+    } else {
         localStorage.clear();
         alert("All contacts are deleted.");
         window.location.reload();
         return false;    
-	}
+    }
 }
- 
+    
     makeTitle();
     
     //Set Links and Submit Click Events
@@ -122,9 +121,9 @@ function clearLocal(){
     displayLink.addEventListener("click", getData);
     var clearLink = $('clear');
     clearLink.addEventListener('click', clearLocal);
-    var save = $("submit");
+    var save = $('submit');
     save.addEventListener('click', storeData);
 
 
 
-});
+})
