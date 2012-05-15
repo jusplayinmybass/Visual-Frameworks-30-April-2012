@@ -78,6 +78,9 @@ var titleGroups = ["Choose One", "Ms", "Mrs", "Mr"],
     }
     function getData(){
     toggleControls("on");
+	if (localStorage.length === 0){
+		alert("There is no data in Local Storage");
+	}
         var makeDiv = document.createElement('div');
         makeDiv.setAttribute("id", "items");
         var makeList = document.createElement('ul');
@@ -123,7 +126,6 @@ function clearLocal(){
     var clearLink = $('clear');
     clearLink.addEventListener('click', clearLocal);
     var save = $("submit");
-    save.addEventListener('click', storeData);
 
 
 
