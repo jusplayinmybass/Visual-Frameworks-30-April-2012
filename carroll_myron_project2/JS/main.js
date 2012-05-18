@@ -89,6 +89,7 @@ var titleGroups = ["Choose One", "Ms", "Mrs", "Mr"],
     $("items").style.display = "block";
         for(var i=0, len=localStorage.length; i<len; i++){
             var makeLi = document.createElement('li');
+	    var linksli = document.createElement('li'); 
             makeList.appendChild(makeLi);
             var key = localStorage.key(i);
             var value = localStorage.getItem(key);
@@ -100,12 +101,33 @@ var titleGroups = ["Choose One", "Ms", "Mrs", "Mr"],
             makeSublist.appendChild(makeSubli);
             var optSubText = obj[n][0] + " " + obj[n][1];
             makeSubli.innerHTML = optSubText;
+	    makeSublist.appendChild(linksLi);
             
         }
-    
+	makeItemLinks(localStorage.key(i), linksli); // Create edit and delete links for each item in local storage
     }
 }
-    
+
+//Make Items Links
+
+function makeItemsLinks(key, linksli){
+//add edit single item link
+	var editLink = document.createElement('a');
+	editLink.href = "#";
+	editLink.key = key;
+	var editText = "Edit Info";
+	editLink.addEventListener("click", editItem);
+	editLink.innerHTML = editText;
+	linksLi.appendChild(editLink);
+	
+	var deleteLink = document.createElement('a');
+	deleteLink.href = "#";
+	deleteLink.key = key;
+	var deleteText = "Delete Info"
+	deleteLink.addEventListener("click", deleteItem);
+	deleteLink.innerHTML = deleteText;
+	linksLi.appendChild(deleteLink);
+}
    
 function clearLocal(){
     if(localStorage.length === 0) {
