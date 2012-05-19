@@ -59,8 +59,14 @@ var titleGroups = ["--Choose One--", "Ms", "Mrs", "Mr"],
 }
 
     //Store the data to local storage
-    function storeData(){
+    function storeData(key){
+	//If there is no key, this is a new item and generates a new key
+	if(!key){
         var id = Math.floor(Math.random()*10000000001);
+	}else{
+		//Set id to the existing key so it will save over data
+		id = key
+	}
         //Gather up all form field values in an object
         //Object properties contain an array that contains the form label and input value.
         getSelectedRadio();
@@ -170,7 +176,17 @@ function editItem(){
 	editSubmit.addEventListener("click", validate);
 	editSubmit.ket = this.key;
 	
-}   
+}
+
+function deleteItem(){
+	var ask = confirm("Are You Sure you want to delete this contact?");
+	if(ask){
+		localStorage.removeItem(this.key);
+		window.location.reload();
+	}else{
+		alert('Contact was not deleted.');
+	}
+}
 function clearLocal(){
     if(localStorage.length === 0) {
         alert("There is no data to clear.");
@@ -188,6 +204,13 @@ function clearLocal(){
 	var getFname = $('fName');
 	var getLname = $('lName');
 	var getEmail = $('email');
+	
+	//Reset Error Messages
+	errMsg.innerHTML = "";
+		getTitle.style.border = "1px solid black"
+		getTitle.style.border = "1px solid black"
+		getLname.style.border = "1px solid black";
+		getEmail.style.border = "1px solid black";
 	
 	//Get Error messages
 	var messageAry = [];
@@ -224,11 +247,14 @@ function clearLocal(){
 			txt.innerHTML = messageAry[i];
 			errMsg.appendChild(txt);
 		}
+		e.preventDefault();
+		return false;
 		
-		
+	}else{
+		//If all is well, Store the data
+		storeData(this.key);
 	}
-	e.preventDefault();
-	return false;
+	
  }
     makeTitle();
     
