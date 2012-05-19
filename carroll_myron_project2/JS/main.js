@@ -182,6 +182,7 @@ function deleteItem(){
 	var ask = confirm("Are You Sure you want to delete this contact?");
 	if(ask){
 		localStorage.removeItem(this.key);
+		alert("Contact was deleted");
 		window.location.reload();
 	}else{
 		alert('Contact was not deleted.');
