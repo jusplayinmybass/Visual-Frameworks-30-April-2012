@@ -89,7 +89,7 @@ var titleGroups = ["Choose One", "Ms", "Mrs", "Mr"],
     $("items").style.display = "block";
         for(var i=0, len=localStorage.length; i<len; i++){
             var makeLi = document.createElement('li');
-	    var linksli = document.createElement('li'); 
+	    var linksLi = document.createElement('li'); 
             makeList.appendChild(makeLi);
             var key = localStorage.key(i);
             var value = localStorage.getItem(key);
@@ -104,13 +104,13 @@ var titleGroups = ["Choose One", "Ms", "Mrs", "Mr"],
 	    makeSublist.appendChild(linksLi);
             
         }
-	makeItemLinks(localStorage.key(i), linksli); // Create edit and delete links for each item in local storage
+	makeItemLinks(localStorage.key(i), linksLi); // Create edit and delete links for each item in local storage
     }
 }
 
 //Make Items Links
 
-function makeItemsLinks(key, linksli){
+function makeItemsLinks(key, linksLi){
 //add edit single item link
 	var editLink = document.createElement('a');
 	editLink.href = "#";
@@ -120,6 +120,11 @@ function makeItemsLinks(key, linksli){
 	editLink.innerHTML = editText;
 	linksLi.appendChild(editLink);
 	
+	//Add break line
+	var breakTag = document.createElement('br');
+	linksLi.appendChild(breakTag);
+	
+	//Add delete single item link
 	var deleteLink = document.createElement('a');
 	deleteLink.href = "#";
 	deleteLink.key = key;
@@ -128,7 +133,35 @@ function makeItemsLinks(key, linksli){
 	deleteLink.innerHTML = deleteText;
 	linksLi.appendChild(deleteLink);
 }
-   
+
+function editItem(){
+	//Grab data from Local Storage
+	var value = localStorage.getItem(this.key);
+	var item = JSON.parse(value);
+	//Show Form
+	toggleControls("off");
+	
+	//Populate form fields with current local storage values
+	$('title').value = item.title[1];
+	$('fname').value = item.fname[1];
+	$('lname').value = item.lname[1];
+	$('email').value = item.email[1];
+	$('birth').value = item.birth[1];
+	var radios = document.forms[0].group;
+	for(var i=0; i<radios.length; i++){
+		if(radios[i].value == "member"){
+			radios[i].setAttribute("checked", "checked");
+		} else if(radios[i].value == "not" && obj.group[1] == "not"){
+			radios[i].setAttribute("checked", "checked");
+		}else if (radios[i].value == "donot" && obj.group[2] == "donot"){
+			radios[i].setAttribute("checked", "checked");
+		}
+		
+	}
+	$('prayer').value = item.prayer[1];
+	$('needs').value = item.needs[1];
+	
+}   
 function clearLocal(){
     if(localStorage.length === 0) {
         alert("There is no data to clear.");
