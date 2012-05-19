@@ -5,8 +5,9 @@
 // Wait until the DOM is ready.
 
 window.addEventListener("DOMContentLoaded", function(){
-var titleGroups = ["Choose One", "Ms", "Mrs", "Mr"],
-    groupValue;
+var titleGroups = ["--Choose One--", "Ms", "Mrs", "Mr"],
+    groupValue,
+    errMsg = $("errors");
     //GetElementByID Function
     function $(x){
         var theElement = document.getElementById(x);
@@ -160,6 +161,14 @@ function editItem(){
 	}
 	$('prayer').value = item.prayer[1];
 	$('needs').value = item.needs[1];
+	//Remove initial listener from input 'save info' button
+	save.removeEventLictener("click", storeData);
+	//Change Submit to Edit Button
+	$("submit").value = "Edit Contact";
+	var editSubmit = $('submit');
+	//save the key value established in this function as a property of the editSubmit event
+	editSubmit.addEventListener("click", validate);
+	editSubmit.ket = this.key;
 	
 }   
 function clearLocal(){
@@ -173,6 +182,54 @@ function clearLocal(){
 	}
 }
  
+ function validate(e){
+	//Define elements to check
+	var getTitle = $("title");
+	var getFname = $('fName');
+	var getLname = $('lName');
+	var getEmail = $('email');
+	
+	//Get Error messages
+	var messageAry = [];
+	//Title Validation
+	if(getTitle.value=="--Choose One--"){
+		var titleError = "Please Choose a Title";
+		getTitle.style.border = "1px solid red"
+		messageAry.push(titleError);
+	}
+	//First Name Validation
+	if(getFname.value === ""){
+		var fNameError = "Please Enter a First Name";
+		getFname.style.border = "1px solid red";
+		messageAry.push(fNameError);
+	}
+	//Last Name Validation
+	if(getLname.value === ""){
+		var lNameError = "Please Enter a First Name";
+		getLname.style.border = "1px solid red";
+		messageAry.push(lNameError);
+	}
+	//Email Validation
+	var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+	if(!(re.exec(getEmail.value))){
+		var emailError = "Please Enter A Valid Email Address";
+		getEmail.style.border = "1px solid red";
+		messageAry.push(emailError);
+	}
+	
+	//Iff there are errors display them on screen
+	if(messageAry.length >= 1){
+		for(var i=0, j=messageAry.length; i<j; i++){
+			var txt = document.createElement('li');
+			txt.innerHTML = messageAry[i];
+			errMsg.appendChild(txt);
+		}
+		
+		
+	}
+	e.preventDefault();
+	return false;
+ }
     makeTitle();
     
     //Set Links and Submit Click Events
@@ -181,7 +238,7 @@ function clearLocal(){
     var clearLink = $('clear');
     clearLink.addEventListener('click', clearLocal);
     var save = $("submit");
-    clearLink.addEventListener('click', storeData);
+    clearLink.addEventListener('click', validate);
 
 
 
